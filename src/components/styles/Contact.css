@@ -1,92 +1,283 @@
 .contact-section {
+  width: 100%;
   margin: auto;
   padding-bottom: 100px;
   margin-top: 100px;
+  position: relative;
+  z-index: 10;
 }
-.contact-section h3 {
-  font-size: 60px;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: 0;
-}
-.contact-flex {
-  display: flex;
-  justify-content: space-between;
-}
-.contact-flex h4 {
+
+.contact-title-main {
+  font-size: 70px;
   font-weight: 500;
-  margin: 0;
-  opacity: 0.6;
+  margin-bottom: 50px;
+  text-align: left;
 }
-.contact-box {
-  display: flex;
-  flex-direction: column;
-}
-.contact-flex p {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-a.contact-social {
-  font-size: 25px;
-  border-bottom: 1px solid #ccc;
-}
-.contact-box h2 {
-  font-weight: 400;
-  font-size: 23px;
-  margin: 0;
-}
-.contact-box h2 > span {
+
+.contact-title-main span {
   color: var(--accentColor);
 }
-.contact-box h5 {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 20px;
+
+/* Glassmorphic Cards Grid */
+.contact-terminal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+.contact-glass-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 24px;
+  padding: 40px;
+  box-sizing: border-box;
+  overflow: hidden;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex;
-  gap: 10px;
-  opacity: 0.5;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 24px;
 }
-@media only screen and (max-width: 1600px) {
-  .contact-section h3 {
+
+/* Mouse cursor glow */
+.contact-glass-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(168, 85, 247, 0.12),
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.contact-glass-card:hover::before {
+  opacity: 1;
+}
+
+.contact-glass-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 20px 45px rgba(168, 85, 247, 0.1);
+}
+
+.contact-card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 2;
+  position: relative;
+}
+
+.card-icon-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--accentColor);
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+}
+
+.contact-glass-card h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+/* Channel details inside Card 1 */
+.channel-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+  position: relative;
+}
+
+.channel-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #adacac;
+  letter-spacing: 0.8px;
+}
+
+.channel-link {
+  font-size: 18px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+  width: fit-content;
+}
+
+.channel-link:hover {
+  color: var(--accentColor);
+}
+
+.outward-icon {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+}
+
+.channel-link:hover .outward-icon {
+  transform: translate(2px, -2px);
+}
+
+/* Social Network matrix inside Card 2 */
+.socials-matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  z-index: 2;
+  position: relative;
+}
+
+.matrix-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.01);
+  text-decoration: none;
+  color: #d1d1d1;
+  font-size: 14px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.matrix-link svg:first-child {
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.matrix-link span {
+  flex: 1;
+  margin-left: 12px;
+}
+
+.matrix-link:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: var(--accentColor);
+  color: #fff;
+}
+
+.matrix-link:hover svg:first-child {
+  color: var(--accentColor);
+}
+
+/* Signature Panel Card 3 */
+.signature-card {
+  grid-column: span 1;
+  justify-content: center;
+}
+
+/* On large screens, let Card 3 stretch across both columns if grid has room */
+@media screen and (min-width: 1150px) {
+  .signature-card {
+    grid-column: span 2;
+  }
+}
+
+.signature-flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 30px;
+  z-index: 2;
+  position: relative;
+}
+
+.signature-card h2 {
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.4;
+  margin: 0;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.highlight-signature {
+  color: var(--accentColor);
+  font-weight: 700;
+}
+
+.footer-credits {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 20px;
+}
+
+.copyright-tag {
+  font-size: 14px;
+  color: #adacac;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tech-badge {
+  font-size: 12px;
+  background: rgba(168, 85, 247, 0.1);
+  color: var(--accentColor);
+  border: 1px solid rgba(168, 85, 247, 0.15);
+  padding: 4px 12px;
+  border-radius: 30px;
+}
+
+/* Mobile Responsiveness */
+@media only screen and (max-width: 1024px) {
+  .contact-title-main {
     font-size: 50px;
-  }
-  .contact-box h2 {
-    font-size: 20px;
-  }
-  a.contact-social {
-    font-size: 22px;
+    margin-bottom: 30px;
   }
 }
-@media only screen and (max-width: 1300px) {
-  .contact-section h3 {
-    font-size: 40px;
-  }
-  .contact-box h2 {
-    font-size: 18px;
-  }
-  a.contact-social {
-    font-size: 20px;
-  }
-  .contact-flex p {
-    margin-top: 0px;
-  }
-}
+
 @media only screen and (max-width: 900px) {
-  .contact-flex {
-    flex-direction: column;
-    gap: 40px;
+  .contact-terminal-grid {
+    grid-template-columns: 1fr;
   }
-  .contact-flex p {
-    margin-bottom: 0px;
-  }
-  .contact-flex h4 {
-    margin-top: 20px;
+  .signature-card {
+    grid-column: span 1;
   }
   .contact-section {
-    margin-top: 50px;
-    padding-bottom: 50px;
+    margin-top: 60px;
+    padding-bottom: 60px;
   }
-  .contact-container {
-    width: calc(100% - 25px);
+  .contact-glass-card {
+    padding: 30px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .socials-matrix {
+    grid-template-columns: 1fr;
+  }
+  .footer-credits {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 }

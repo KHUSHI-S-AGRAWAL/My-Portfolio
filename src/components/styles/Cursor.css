@@ -31,3 +31,11 @@
     --size: 0px;
   }
 }
+
+.cursor-main.cursor-main-hidden {
+  opacity: 0 !important;
+  --size: 0px !important;
+  transform: scale(0) !important;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
