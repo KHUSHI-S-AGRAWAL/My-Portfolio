@@ -52,7 +52,7 @@ const projects = [
     description:
       "Developed a real-time safety and flood monitoring dashboard featuring predictive APIs, rapid emergency alert notifications, and location sharing to enable faster assistance during critical situations.",
     tools: ["React", "Node.js", "Express", "Predictive APIs", "Tailwind CSS"],
-    accent: "#50fa7b",
+    accent: "#38bdf8",
     image: "/images/bluealert.png",
     link: "#"
   },
@@ -64,7 +64,7 @@ const projects = [
     tools: ["React", "Node.js", "Express", "API Integration", "Web Scraping"],
     accent: "#8be9fd",
     image: "/images/dealcheck.png",
-    link: "#"
+    link: "https://deal-check-five.vercel.app/"
   },
   {
     name: "StudySpark",
@@ -74,7 +74,7 @@ const projects = [
     tools: ["HTML", "CSS", "JavaScript", "React"],
     accent: "#bd93f9",
     image: "/images/studyspark.png",
-    link: "#"
+    link: "https://studyspark-kl5a.onrender.com/"
   },
   {
     name: "MyHRSG",
@@ -92,32 +92,19 @@ const Work = () => {
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
-        <div className="work-header-wrapper">
-          <div className="work-header-left">
-            <h2 className="work-heading">
-              Featured <span>Work</span>
-            </h2>
-            <p className="work-subheading">
-              Here is a selection of projects I've built, combining robust engineering with refined user interfaces.
-            </p>
-          </div>
-          <div className="work-header-right-image">
-            <div className="work-image-glow-container">
-              <img
-                src="/images/woman_working.png"
-                alt="Woman working on laptop"
-                className="work-female-image"
-              />
-            </div>
-          </div>
-        </div>
+        <h2 className="work-heading">
+          Featured <span>Work</span>
+        </h2>
+        <p className="work-subheading">
+          Here is a selection of projects I've built, combining robust engineering with refined user interfaces.
+        </p>
 
         <div className="projects-loop-container">
           <LogoLoop
             logos={projects}
             speed={40}
             direction="left"
-            logoHeight={600}
+            logoHeight={480}
             gap={40}
             hoverSpeed={0}
             scaleOnHover={false}
@@ -125,7 +112,7 @@ const Work = () => {
             fadeOutColor="#0b080c"
             ariaLabel="Featured Projects"
             renderItem={(project) => (
-              <div className="project-loop-card">
+              <div className="project-loop-card" style={{ "--project-accent": project.accent }}>
                 <div className="project-loop-image-wrapper">
                   <img
                     src={project.image}

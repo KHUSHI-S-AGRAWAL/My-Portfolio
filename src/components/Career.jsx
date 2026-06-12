@@ -1,58 +1,70 @@
 import "./styles/Career.css";
+import { TbTrophy, TbCertificate, TbTarget, TbAward } from "react-icons/tb";
 
 const Career = () => {
+  const achievements = [
+    {
+      title: "CEP Poster Competition",
+      role: "Winner",
+      date: "2025",
+      desc: "Won first prize at the College Entrepreneurship Program poster competition for the presentation of innovative software solutions.",
+      icon: <TbTrophy />,
+      accent: "#a855f7"
+    },
+    {
+      title: "National Hackathons",
+      role: "Participant & Finalist",
+      date: "2025",
+      desc: "Participant at INDRADHANU National Level Hackathon and finalist at PICT Impetus 2025. Actively designed and pitched functional workflow architectures.",
+      icon: <TbTarget />,
+      accent: "#38bdf8"
+    },
+    {
+      title: "WWT Women Hackathon",
+      role: "National Participant",
+      date: "2025",
+      desc: "Competed at the WWT All India Women Only Hackathon, collaborating on high-pressure developer sprint cycles.",
+      icon: <TbAward />,
+      accent: "#ff79c6"
+    },
+    {
+      title: "Technical Certifications",
+      role: "NPTEL & IIT Bombay",
+      date: "2024 - 2025",
+      desc: "Certified in Programming in C & Python (NPTEL), and HTML & Java through EduPyramids (SINE, IIT Bombay).",
+      icon: <TbCertificate />,
+      accent: "#fbbf24"
+    }
+  ];
+
   return (
-    <div className="career-section section-container">
+    <div className="career-section section-container" id="timeline">
       <div className="career-container">
         <h2>
-          Education <span>&</span>
-          <br /> Timeline
+          Achievements <span>&</span>
+          <br /> Certifications
         </h2>
-        <div className="career-info">
-          <div className="career-timeline">
-            <div className="career-dot"></div>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>B.E. in Computer Engineering</h4>
-                <h5>PCCOER</h5>
+        
+        <div className="achievements-bento-grid">
+          {achievements.map((item, idx) => (
+            <div 
+              key={idx} 
+              className="achievement-card"
+              style={{ "--accent": item.accent }}
+            >
+              <div className="achievement-card-glow"></div>
+              <div className="achievement-header">
+                <span className="achievement-icon" style={{ color: item.accent }}>
+                  {item.icon}
+                </span>
               </div>
-              <h3>2024 - 2028</h3>
-            </div>
-            <p>
-              Pimpri Chinchwad College of Engineering and Research (PCCOER).
-              Outstanding academic record: Semester 1: 9.86 SGPA | Semester 2:
-              9.68 SGPA | Semester 3: 9.23 SGPA.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>Technical Certifications</h4>
-                <h5>NPTEL & EduPyramids</h5>
+              <div className="achievement-body">
+                <h3>{item.title}</h3>
+                <h4>{item.role}</h4>
+                <p>{item.desc}</p>
               </div>
-              <h3>2024 - 2025</h3>
             </div>
-            <p>
-              NPTEL Certifications in Programming in C and Python. Certified in
-              HTML and JAVA by EduPyramids (SINE, IIT Bombay).
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>Hackathons & Achievements</h4>
-                <h5>National & International Events</h5>
-              </div>
-              <h3>2025</h3>
-            </div>
-            <p>
-              Finalist at INDRADHANU International Grand Challenge, PICT Impetus
-              2025, and WWT All India Women Only Hackathon. Winner of CEP Poster
-              Competition. Entrepreneurship Development Program (UDBHAV).
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </div>

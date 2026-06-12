@@ -13,10 +13,11 @@ const Navbar = () => {
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
+      smooth: 1.1,
+      speed: 1.0,
       effects: true,
       autoResize: true,
+      normalizeScroll: true,
       ignoreMobileResize: true,
     });
 
@@ -26,6 +27,13 @@ const Navbar = () => {
     const handleMenuClick = (e) => {
       const href = e.currentTarget.getAttribute("href");
       if (href) {
+        if (href.startsWith("http") || href.endsWith(".pdf")) {
+          const toggleBtn = document.querySelector(".sm-toggle");
+          if (toggleBtn?.getAttribute("aria-expanded") === "true") {
+            toggleBtn.click();
+          }
+          return;
+        }
         e.preventDefault();
         
         // Find toggle button and check if menu is open
@@ -79,12 +87,13 @@ const Navbar = () => {
     { label: 'Home', ariaLabel: 'Go to home page', link: '#' },
     { label: 'About', ariaLabel: 'Learn about me', link: '#about' },
     { label: 'Work', ariaLabel: 'View my work', link: '#work' },
+    { label: 'Tech Stack', ariaLabel: 'View my tech stack', link: '#tech' },
     { label: 'Contact', ariaLabel: 'Get in touch', link: '#contact' }
   ];
 
   const socialItems = [
-    { label: 'GitHub', link: 'https://github.com' },
-    { label: 'LinkedIn', link: 'https://linkedin.com' }
+    { label: 'GitHub', link: 'https://github.com/KHUSHI-S-AGRAWAL' },
+    { label: 'LinkedIn', link: 'https://www.linkedin.com/in/khushi-agrawal-879547305' }
   ];
 
   return (
@@ -98,9 +107,9 @@ const Navbar = () => {
         menuButtonColor="#ccc"
         openMenuButtonColor="#111"
         changeMenuColorOnOpen={true}
-        colors={['#100d14', '#1b1722', '#00d2ff']}
+        colors={['#100d14', '#1b1722', '#a855f7']}
         logoUrl=""
-        accentColor="#00d2ff"
+        accentColor="#a855f7"
         isFixed={true}
       />
       <div className="landing-circle1"></div>

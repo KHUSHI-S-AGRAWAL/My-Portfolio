@@ -11,6 +11,7 @@ import Work from "./Work";
 import setSplitText from "./utils/splitText";
 
 const TechStack = lazy(() => import("./TechStack"));
+import { setAllTimeline } from "./utils/GsapScroll";
 
 const MainContainer = ({ children }) => {
   const [isDesktopView, setIsDesktopView] = useState(window.innerWidth > 1024);
@@ -21,6 +22,7 @@ const MainContainer = ({ children }) => {
       setIsDesktopView(window.innerWidth > 1024);
     };
     resizeHandler();
+    setAllTimeline();
     window.addEventListener("resize", resizeHandler);
     return () => {
       window.removeEventListener("resize", resizeHandler);

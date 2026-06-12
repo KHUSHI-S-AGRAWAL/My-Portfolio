@@ -62,13 +62,14 @@ export function initialFX() {
     },
   );
   gsap.fromTo(
-    [".header", ".icons-section", ".nav-fade"],
-    { opacity: 0 },
+    [".header", ".icons-section", ".nav-fade", ".landing-left-intro"],
+    { opacity: 0, y: 20 },
     {
       opacity: 1,
-      duration: 1.2,
-      ease: "power1.inOut",
-      delay: 0.1,
+      y: 0,
+      duration: 1.5,
+      ease: "power2.out",
+      delay: 0.3,
     },
   );
 

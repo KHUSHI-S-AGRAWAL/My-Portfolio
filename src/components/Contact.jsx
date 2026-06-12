@@ -1,6 +1,7 @@
 import { MdArrowOutward, MdCopyright, MdEmail, MdPhone } from "react-icons/md";
-import { SiGithub, SiLeetcode, SiCodechef } from "react-icons/si";
+import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa";
+import { TbNotes } from "react-icons/tb";
 import "./styles/Contact.css";
 
 const Contact = () => {
@@ -64,7 +65,7 @@ const Contact = () => {
             
             <div className="socials-matrix">
               <a
-                href="https://github.com"
+                href="https://github.com/KHUSHI-S-AGRAWAL"
                 target="_blank"
                 rel="noreferrer"
                 data-cursor="disable"
@@ -76,7 +77,7 @@ const Contact = () => {
               </a>
 
               <a
-                href="https://www.linkedin.com"
+                href="https://www.linkedin.com/in/khushi-agrawal-879547305"
                 target="_blank"
                 rel="noreferrer"
                 data-cursor="disable"
@@ -88,26 +89,14 @@ const Contact = () => {
               </a>
 
               <a
-                href="https://leetcode.com"
+                href="/KHUSHI_AGRAWAL_RESUME.pdf"
                 target="_blank"
                 rel="noreferrer"
                 data-cursor="disable"
-                className="matrix-link leetcode-matrix"
+                className="matrix-link resume-matrix"
               >
-                <SiLeetcode />
-                <span>LeetCode</span>
-                <MdArrowOutward />
-              </a>
-
-              <a
-                href="https://www.codechef.com"
-                target="_blank"
-                rel="noreferrer"
-                data-cursor="disable"
-                className="matrix-link codechef-matrix"
-              >
-                <SiCodechef />
-                <span>CodeChef</span>
+                <TbNotes />
+                <span>Resume</span>
                 <MdArrowOutward />
               </a>
             </div>
@@ -125,7 +114,6 @@ const Contact = () => {
                 <span className="copyright-tag">
                   <MdCopyright /> 2026 Portfolio
                 </span>
-                <span className="tech-badge">Built with React & GSAP</span>
               </div>
             </div>
           </div>

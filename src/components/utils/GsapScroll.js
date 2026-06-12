@@ -17,7 +17,7 @@ export function setCharTimeline(character, camera) {
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: ".about-section",
-      start: "center 55%",
+      start: "bottom 95%",
       end: "bottom top",
       scrub: true,
       invalidateOnRefresh: true,
@@ -65,7 +65,7 @@ export function setCharTimeline(character, camera) {
         .fromTo(character.rotation, { y: 0 }, { y: 0.7, duration: 1 }, 0)
         .fromTo(character.position, { y: 4.0 }, { y: 3.6, duration: 1 }, 0)
         .to(camera.position, { z: 22 }, 0)
-        .fromTo(".character-model", { x: 0, opacity: 1 }, { x: "-25%", opacity: 1, duration: 1 }, 0)
+        .fromTo(".character-model", { left: "50%", opacity: 1 }, { left: "25%", opacity: 1, duration: 1 }, 0)
         .fromTo(".landing-container", { opacity: 1 }, { opacity: 0, duration: 0.4 }, 0)
         .fromTo(".landing-bg-title", { opacity: 1 }, { opacity: 0, duration: 0.4 }, 0)
         .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
@@ -77,12 +77,10 @@ export function setCharTimeline(character, camera) {
           { z: 75, y: 8.4, duration: 6, delay: 2, ease: "power3.inOut" },
           0,
         )
-        .to(".about-section", { y: "30%", duration: 6 }, 0)
-        .fromTo(".about-section", { opacity: 1 }, { opacity: 0, delay: 5, duration: 1.5 }, 0)
         .fromTo(
           ".character-model",
           { pointerEvents: "inherit" },
-          { pointerEvents: "none", x: "-12%", delay: 6.5, duration: 1.5 },
+          { pointerEvents: "none", left: "37%", delay: 6.5, duration: 1.5 },
           0,
         )
         .fromTo(".character-model", { opacity: 1 }, { opacity: 0, delay: 6.5, duration: 1.5 }, 0)

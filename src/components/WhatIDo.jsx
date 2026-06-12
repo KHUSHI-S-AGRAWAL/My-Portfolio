@@ -136,9 +136,17 @@ const WhatIDo = () => {
           </div>
         </div>
 
-        {/* Center Column: 3D Model */}
+        {/* Center Column: Styled Image */}
         <div className="what-model-column">
-          <WhatIDo3D />
+          <div className="what-image-wrapper">
+            <div className="work-image-glow-container what-i-do-image-container">
+              <img
+                src="/images/woman_working.png"
+                alt="Woman working on laptop"
+                className="work-female-image"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Right Column: Databases */}

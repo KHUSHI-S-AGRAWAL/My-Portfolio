@@ -6,10 +6,7 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Motivated Computer Engineering student with a strong foundation in
-          full-stack development and problem-solving. Eager to contribute to
-          impactful software projects and leverage technical skills in a dynamic
-          development role.
+          Driven Computer Engineering student leveraging strong full-stack technical skills and agile problem-solving to build impactful software solutions. I combine a consistent academic record with a proven track record of designing scalable web applications and delivering user-centric digital platforms under competitive hackathon constraints. Eager to create digital experiences that blend clean code with intuitive design.
         </p>
       </div>
     </div>

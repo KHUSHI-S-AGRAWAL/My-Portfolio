@@ -10,23 +10,10 @@ import {
   CylinderCollider,
 } from "@react-three/rapier";
 
-const textureLoader = new THREE.TextureLoader();
-const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
-];
-const textures = imageUrls.map((url) => textureLoader.load(url));
-
 const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
 
 const spheres = [...Array(30)].map(() => ({
-  scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
+  scale: [1.0, 1.3, 1.1, 1.4, 1.2][Math.floor(Math.random() * 5)],
 }));
 
 function SphereGeo({
@@ -43,6 +30,7 @@ function SphereGeo({
     delta = Math.min(0.1, delta);
     const impulse = vec
       .copy(api.current.translation())
+      .sub(new THREE.Vector3(0, -2.0, 0))
       .normalize()
       .multiply(
         new THREE.Vector3(
@@ -91,7 +79,7 @@ function Pointer({ vec = new THREE.Vector3(), isActive }) {
     const targetVec = vec.lerp(
       new THREE.Vector3(
         (pointer.x * viewport.width) / 2,
-        (pointer.y * viewport.height) / 2,
+        (pointer.y * viewport.height) / 2 - 2.0,
         0,
       ),
       0.2,
@@ -139,22 +127,59 @@ const TechStack = () => {
     };
   }, []);
   const materials = useMemo(() => {
-    return textures.map(
-      (texture) =>
-        new THREE.MeshPhysicalMaterial({
-          map: texture,
-          emissive: "#ffffff",
-          emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
-          clearcoat: 0.1,
-        }),
-    );
+    const techList = [
+      { name: "C", color: "#00599c" },
+      { name: "Python", color: "#3776ab" },
+      { name: "Java", color: "#e76f00" },
+      { name: "HTML", color: "#e34f26" },
+      { name: "CSS", color: "#1572b6" },
+      { name: "JS", color: "#f7df1e", textColor: "#000000" },
+      { name: "MySQL", color: "#00758f" },
+      { name: "GitHub", color: "#24292e" },
+      { name: "Canva", color: "#00c4cc" },
+      { name: "React", color: "#61dafb", textColor: "#000000" }
+    ];
+
+    return techList.map((tech) => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 256;
+      canvas.height = 256;
+      const ctx = canvas.getContext("2d");
+      
+      // Clean background circle
+      ctx.fillStyle = tech.color;
+      ctx.beginPath();
+      ctx.arc(128, 128, 120, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // White subtle border ring
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+      ctx.lineWidth = 6;
+      ctx.stroke();
+
+      // Bold Text
+      ctx.fillStyle = tech.textColor || "#ffffff";
+      ctx.font = "bold 64px Geist, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(tech.name, 128, 128);
+      
+      const texture = new THREE.CanvasTexture(canvas);
+      
+      return new THREE.MeshPhysicalMaterial({
+        map: texture,
+        emissive: tech.textColor === "#000000" ? "#555555" : "#ffffff",
+        emissiveMap: texture,
+        emissiveIntensity: 0.15,
+        metalness: 0.4,
+        roughness: 0.2,
+        clearcoat: 0.3,
+      });
+    });
   }, []);
 
   return (
-    <div className="techstack">
+    <div className="techstack" id="tech">
       <h2> My Techstack</h2>
 
       <Canvas
@@ -163,6 +188,7 @@ const TechStack = () => {
         camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
         onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
         className="tech-canvas"
+        style={{ height: "600px", minHeight: "600px" }}
       >
         <ambientLight intensity={1} />
         <spotLight

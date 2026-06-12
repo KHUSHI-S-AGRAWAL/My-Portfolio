@@ -32,6 +32,25 @@ const Landing = ({ children }) => {
     };
   }, [isLoading]);
 
+  // Cross-fade slideshow for the role (Developer, Computer Engineer, Software Developer)
+  const roles = ["Frontend Developer", "Computer Engineer", "Software Developer"];
+  const [roleIdx, setRoleIdx] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setRoleIdx((prev) => (prev + 1) % roles.length);
+        setFade(true);
+      }, 500); // Match transition duration
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [isLoading]);
+
   return (
     <>
       <div className="landing-section" id="landingDiv">
@@ -39,16 +58,22 @@ const Landing = ({ children }) => {
           {displayText}
           <span className="typewriter-cursor">|</span>
         </h1>
+        
+        {/* Left Side Intro */}
+        <div className="landing-left-intro">
+          <span className="left-intro-tag">Welcome to my space</span>
+          <h3 className="left-intro-heading">Engineering digital experiences.</h3>
+          <p className="left-intro-text">
+            Computer Engineering student focused on building robust full-stack applications, database workflows, and refined user interfaces.
+          </p>
+        </div>
+
         <div className="landing-container">
           <div className="landing-info">
-            <h3>A Creative</h3>
             <h2 className="landing-info-h2">
-              <div className="landing-h2-1">Designer</div>
-              <div className="landing-h2-2">Developer</div>
-            </h2>
-            <h2>
-              <div className="landing-h2-info">Developer</div>
-              <div className="landing-h2-info-1">Designer</div>
+              <span className={`role-fade-text ${fade ? "fade-in" : "fade-out"}`}>
+                {roles[roleIdx]}
+              </span>
             </h2>
           </div>
         </div>

@@ -4,7 +4,7 @@
   height: auto;
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 100px 0;
+  padding: 80px 0 0 0;
   z-index: 10;
 }
 
@@ -19,7 +19,7 @@
 .work-heading {
   font-size: 70px;
   font-weight: 500;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   text-align: left;
 }
 
@@ -321,15 +321,15 @@
 
 /* Project Loop Card Styles */
 .work-section .logoloop {
-  padding: 40px 0;
+  padding: 10px 0;
 }
 
 .project-loop-card {
-  width: 520px;
-  height: 600px;
+  width: 440px;
+  height: 500px;
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 0px;
+  border-radius: 24px;
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   overflow: hidden;
@@ -341,15 +341,17 @@
 }
 
 .project-loop-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--project-accent, rgba(168, 85, 247, 0.4));
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+              0 0 30px rgba(0, 0, 0, 0.2), 
+              0 0 20px var(--project-accent, rgba(168, 85, 247, 0.1));
 }
 
 .project-loop-image-wrapper {
   width: 100%;
-  height: 300px;
+  height: 220px;
   position: relative;
   overflow: hidden;
 }
@@ -359,11 +361,13 @@
   height: 100% !important;
   object-fit: cover !important;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+  filter: grayscale(40%) contrast(1.1) brightness(0.9);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
 .project-loop-card:hover .project-loop-image {
-  transform: scale(1.05);
+  transform: scale(1.08);
+  filter: grayscale(0%) contrast(1) brightness(1);
 }
 
 .project-loop-category {
@@ -382,10 +386,10 @@
 }
 
 .project-loop-info {
-  padding: 24px;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   flex-grow: 1;
   box-sizing: border-box;
 }
@@ -395,10 +399,10 @@
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.65);
   margin: 0;
-  height: 88px;
+  height: 60px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 
@@ -406,8 +410,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  height: 52px;
-  overflow: hidden;
+  height: auto;
+  min-height: 36px;
+  overflow: visible;
 }
 
 .project-loop-tool-tag {
@@ -419,6 +424,13 @@
   color: rgba(255, 255, 255, 0.7);
   display: inline-flex;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+.project-loop-card:hover .project-loop-tool-tag {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--project-accent, rgba(168, 85, 247, 0.3));
+  color: #ffffff;
 }
 
 .tool-tag-icon {
@@ -439,13 +451,43 @@
   border-radius: 30px;
   font-size: 13px;
   width: fit-content;
-  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+.project-loop-visit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
 .project-loop-visit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.35);
+}
+
+.project-loop-visit-btn:hover::before {
+  left: 100%;
+}
+
+.project-loop-visit-btn:hover .visit-icon {
+  transform: translate(3px, -3px);
+}
+
+.project-loop-visit-btn .visit-icon {
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .projects-loop-container {
@@ -455,6 +497,7 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+  margin-top: 24px;
 }
 
 /* Work Header and Female Illustration Styles */
@@ -478,8 +521,8 @@
   font-size: 18px;
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.6;
-  margin-top: -30px;
-  margin-bottom: 20px;
+  margin-top: 0px;
+  margin-bottom: 24px;
   max-width: 600px;
   font-weight: 300;
 }
@@ -539,37 +582,88 @@
   transform: scale(1.03);
 }
 
-/* Update work-heading margins to play nice with flex */
 .work-heading {
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 @media only screen and (max-width: 1024px) {
-  .work-header-wrapper {
-    gap: 30px;
+  .work-heading {
+    font-size: 55px;
   }
   .work-subheading {
-    margin-top: -15px;
     font-size: 16px;
+    margin-bottom: 0px;
+  }
+  .project-loop-card {
+    width: 380px;
+    height: 450px;
+  }
+  .project-loop-image-wrapper {
+    height: 200px;
+  }
+  .project-loop-info {
+    padding: 16px;
+    gap: 8px;
+  }
+  .project-loop-description {
+    height: 54px;
+    -webkit-line-clamp: 3;
+  }
+  .project-loop-tools {
+    height: 36px;
+  }
+  .projects-loop-container {
+    margin-top: 10px;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .work-header-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 30px;
+  .work-section {
+    padding: 60px 0 0 0;
   }
-  .work-header-right-image {
-    width: 100%;
-    justify-content: center;
-  }
-  .work-image-glow-container {
-    max-width: 320px;
+  .work-heading {
+    font-size: 42px;
   }
   .work-subheading {
-    margin-top: -10px;
+    font-size: 14px;
+    margin-bottom: 0px;
+  }
+  .project-loop-card {
+    width: 310px !important;
+    max-width: calc(100vw - 20px) !important;
+    height: 400px !important;
+    border-radius: 20px;
+  }
+  .project-loop-image-wrapper {
+    height: 150px !important;
+  }
+  .project-loop-info {
+    padding: 14px !important;
+    gap: 6px !important;
+  }
+  .project-loop-title {
+    font-size: 18px !important;
+  }
+  .project-loop-description {
+    font-size: 12px !important;
+    height: 50px !important;
+    line-height: 1.4 !important;
+    -webkit-line-clamp: 3 !important;
+  }
+  .project-loop-tools {
+    height: 28px !important;
+    gap: 4px !important;
+  }
+  .project-loop-tool-tag {
+    font-size: 8px !important;
+    padding: 2px 6px !important;
+  }
+  .project-loop-visit-btn {
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+  }
+  .projects-loop-container {
+    margin-top: 15px !important;
   }
 }
 
