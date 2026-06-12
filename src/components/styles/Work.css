@@ -11,9 +11,10 @@
 .work-container {
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: min(1200px, calc(100% - 24px));
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .work-heading {
@@ -629,9 +630,10 @@
     margin-bottom: 0px;
   }
   .project-loop-card {
-    width: 310px !important;
+    width: min(100%, 320px) !important;
     max-width: calc(100vw - 20px) !important;
-    height: 400px !important;
+    height: auto !important;
+    min-height: 400px;
     border-radius: 20px;
   }
   .project-loop-image-wrapper {

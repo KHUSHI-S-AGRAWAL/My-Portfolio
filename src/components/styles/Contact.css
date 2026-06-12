@@ -22,7 +22,7 @@
 /* Glassmorphic Cards Grid */
 .contact-terminal-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   width: 100%;
 }
@@ -188,15 +188,8 @@
 
 /* Signature Panel Card 3 */
 .signature-card {
-  grid-column: span 1;
+  grid-column: 1 / -1;
   justify-content: center;
-}
-
-/* On large screens, let Card 3 stretch across both columns if grid has room */
-@media screen and (min-width: 1150px) {
-  .signature-card {
-    grid-column: span 2;
-  }
 }
 
 .signature-flex-container {
@@ -269,6 +262,7 @@
   }
   .contact-glass-card {
     padding: 30px;
+    min-width: 0;
   }
 }
 

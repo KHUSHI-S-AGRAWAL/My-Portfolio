@@ -271,7 +271,8 @@
   }
   .what-content {
     padding: 30px;
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
   }
   .what-content p {
     font-size: 13px;
@@ -292,10 +293,11 @@
 }
 @media only screen and (max-width: 1400px) {
   .what-box-in {
-    margin-left: 50px;
+    margin-left: 0;
   }
   .what-content {
-    width: 380px;
+    width: 100%;
+    max-width: 380px;
   }
 }
 @media only screen and (max-width: 1024px) {
@@ -306,11 +308,12 @@
   }
   .what-box-in {
     height: 500px;
-    margin-left: -50px;
+    margin-left: 0;
   }
   .what-content {
     padding: 50px;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
   }
   .what-content p {
     font-size: 14px;
@@ -344,8 +347,8 @@
     height: 500px;
   }
   .what-box {
-    width: 500px;
-    max-width: calc(100% - 50px);
+    width: min(500px, 100%);
+    max-width: calc(100% - 24px);
     margin: auto;
   }
   .what-content {
@@ -354,17 +357,11 @@
   .what-box-in {
     margin-left: 0px;
     height: 450px;
+    display: flex !important;
   }
   .what-content h5,
   .what-content-flex {
-    opacity: 0;
-    transition: 0.3s;
-  }
-  .what-noTouch:hover h5,
-  .what-content-active h5,
-  .what-noTouch:hover .what-content-flex,
-  .what-content-active .what-content-flex {
-    opacity: 1;
+    opacity: 1 !important;
   }
   .what-content {
     padding: 30px;
@@ -396,7 +393,7 @@
     justify-content: left;
   }
   .what-box {
-    max-width: calc(100% - 25px);
+    max-width: calc(100% - 16px);
     margin: 0;
   }
 }
@@ -457,8 +454,15 @@
 .what-i-do-image-container {
   max-width: 100%;
   width: 100%;
-  height: auto;
+  height: 100%;
+  max-height: 100%;
   margin: 0 auto;
+}
+
+.what-i-do-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 

@@ -23,6 +23,7 @@ const Scene = () => {
   const [cryptoError, setCryptoError] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
     if (canvasDiv.current) {
       let rect = canvasDiv.current.getBoundingClientRect();
       let container = { width: rect.width, height: rect.height };
@@ -42,7 +43,20 @@ const Scene = () => {
       const camera = new THREE.PerspectiveCamera(14.5, aspect, 0.1, 1000);
       camera.position.z = 10;
       camera.position.set(0, 13.1, 24.7);
-      camera.zoom = 1.1;
+      let zoom = 1.0;
+      if (container.width < 600) {
+        zoom = 0.85;
+      } else if (container.width < 1024) {
+        zoom = 0.95;
+      } else if (container.width < 1440) {
+        zoom = 1.1;
+      }
+      
+      if (container.height < 900 && container.width > 600) {
+        zoom *= 0.8;
+      }
+      
+      camera.zoom = zoom;
       camera.updateProjectionMatrix();
 
       let headBone = null;
@@ -59,6 +73,7 @@ const Scene = () => {
 
       loadCharacter()
         .then((gltf) => {
+          if (!isMounted) return;
           if (gltf) {
             // STRIP ARM TRACKS FROM GLTF ANIMATIONS BEFORE MIXER INITIALIZATION
             if (gltf.animations && gltf.animations.length > 0) {
@@ -149,6 +164,7 @@ const Scene = () => {
           }
         })
         .catch((err) => {
+          if (!isMounted) return;
           if (
             err instanceof Error &&
             err.message.includes("Web Crypto API is unavailable")
@@ -192,6 +208,11 @@ const Scene = () => {
         });
         landingDiv.addEventListener("touchend", onTouchEnd, { passive: true });
       }
+
+      const handleWindowResize = () => {
+        handleResize(renderer, camera, canvasDiv, loadedChar || character);
+      };
+      window.addEventListener("resize", handleWindowResize);
 
       const animate = () => {
         requestAnimationFrame(animate);
@@ -353,12 +374,11 @@ const Scene = () => {
       };
       animate();
       return () => {
+        isMounted = false;
         clearTimeout(debounce);
         scene.clear();
         renderer.dispose();
-        window.removeEventListener("resize", () =>
-          handleResize(renderer, camera, canvasDiv, character),
-        );
+        window.removeEventListener("resize", handleWindowResize);
         if (canvasDiv.current) {
           canvasDiv.current.removeChild(renderer.domElement);
         }

@@ -99,7 +99,8 @@
 }
 .character-container {
   position: relative;
-  z-index: 12;
+  z-index: 20;
+  pointer-events: none;
 }
 .character-model {
   height: 80%;
@@ -110,9 +111,9 @@
   transform: translateX(-50%);
   width: 100%;
   left: 50%;
-  z-index: 0;
+  z-index: 20;
   bottom: 50px;
-  pointer-events: inherit;
+  pointer-events: none;
 }
 .character-model::after {
   content: "";
@@ -181,19 +182,95 @@
   width: 100%;
 }
 @media screen and (max-width: 1024px) {
-  .landing-bg-title {
-    font-size: 13vw;
-    top: 8vh;
+  .landing-section {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px 60px 20px;
+    box-sizing: border-box;
   }
-  .character-container,
+  .landing-bg-title {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    font-size: 10vw;
+    white-space: normal;
+    word-break: break-word;
+    margin: 0 0 20px 0;
+    text-align: center;
+    width: 100%;
+  }
+  .landing-container {
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+  }
+  .landing-info {
+    position: relative !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    top: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 450px !important;
+    margin-top: 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .character-container {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    pointer-events: none;
+    z-index: 2;
+  }
   .character-model {
+    display: block !important;
+    position: absolute;
+    width: 100% !important;
+    height: 260px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 170px !important;
+    bottom: auto;
+    opacity: 1 !important;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .character-model::after,
+  .character-model::before {
     display: none !important;
+  }
+  .landing-circle1,
+  .landing-circle2 {
+    opacity: 0.15 !important;
+    filter: blur(80px) !important;
+  }
+  .character-rim {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
 }
 @media screen and (max-width: 600px) {
   .landing-bg-title {
-    font-size: 15vw;
-    top: 10vh;
+    font-size: 14vw;
+    top: auto;
     white-space: normal;
     word-break: break-word;
     padding: 0 20px;
@@ -302,7 +379,7 @@ h2.landing-info-h2 {
     font-size: 38px;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
   .character-model {
     height: 80vh;
   }
@@ -322,8 +399,9 @@ h2.landing-info-h2 {
   .character-model {
     height: 100vh;
     bottom: 0;
-    z-index: 11;
+    z-index: 20;
     position: fixed;
+    pointer-events: none;
   }
   .character-model::after,
   .character-model::before {
@@ -333,7 +411,7 @@ h2.landing-info-h2 {
 
   .landing-info {
     bottom: auto;
-    top: 51%;
+    top: 45%;
     z-index: inherit;
     text-align: left;
     transform: translate(0%, -50%);
@@ -346,7 +424,7 @@ h2.landing-info-h2 {
 
   .landing-info {
     bottom: auto;
-    top: 51%;
+    top: 45%;
     z-index: inherit;
     text-align: left;
     transform: translate(0%, -50%);
@@ -441,13 +519,68 @@ h2.landing-info-h2 {
     position: relative;
     left: auto;
     top: auto;
-    transform: none;
-    width: 80%;
-    margin: 40px auto 0 auto;
+    margin: 280px auto 0 auto; /* Shift down to make space for the 3D model */
     text-align: center;
     align-items: center;
   }
   .left-intro-heading {
-    font-size: 28px;
+    font-size: 24px;
+  }
+}
+
+/* Adjustments for medium/narrow desktop screens (tablet-sized landscape viewports) to keep cards on sides */
+@media screen and (min-width: 1025px) and (max-width: 1150px) {
+  .landing-left-intro {
+    left: 2%;
+    width: 290px;
+    padding: 15px;
+    gap: 12px;
+  }
+  .left-intro-heading {
+    font-size: 22px;
+    line-height: 1.3;
+  }
+  .left-intro-text {
+    font-size: 12px;
+  }
+  .landing-info {
+    left: 68%;
+    width: 280px;
+  }
+  h2.landing-info-h2 {
+    font-size: 26px;
+  }
+}
+
+@media screen and (min-width: 1101px) and (max-width: 1280px) {
+  .landing-left-intro {
+    left: 3%;
+    width: 320px;
+    padding: 20px;
+  }
+  .left-intro-heading {
+    font-size: 26px;
+  }
+  .landing-info {
+    left: 68%;
+    width: 300px;
+  }
+  h2.landing-info-h2 {
+    font-size: 30px;
+  }
+}
+
+/* Very small layout adjustments (e.g. mobile portrait screens) to prevent overlaps and add padding */
+@media screen and (max-width: 500px) {
+  .landing-left-intro {
+    margin: 230px auto 0 auto !important;
+    padding: 20px !important;
+    width: 95% !important;
+  }
+  .left-intro-heading {
+    font-size: 20px !important;
+  }
+  .left-intro-text {
+    font-size: 13px !important;
   }
 }

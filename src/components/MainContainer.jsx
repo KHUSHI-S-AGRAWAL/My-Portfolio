@@ -14,12 +14,12 @@ const TechStack = lazy(() => import("./TechStack"));
 import { setAllTimeline } from "./utils/GsapScroll";
 
 const MainContainer = ({ children }) => {
-  const [isDesktopView, setIsDesktopView] = useState(window.innerWidth > 1024);
+  const [isDesktopView, setIsDesktopView] = useState(window.innerWidth >= 1024);
 
   useEffect(() => {
     const resizeHandler = () => {
       setSplitText();
-      setIsDesktopView(window.innerWidth > 1024);
+      setIsDesktopView(window.innerWidth >= 1024);
     };
     resizeHandler();
     setAllTimeline();
@@ -34,7 +34,7 @@ const MainContainer = ({ children }) => {
       <Cursor />
       <Navbar />
       <SocialIcons />
-      {isDesktopView && children}
+      {children}
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="container-main">

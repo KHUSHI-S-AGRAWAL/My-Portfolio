@@ -17,7 +17,7 @@ export function setCharTimeline(character, camera) {
   const tl2 = gsap.timeline({
     scrollTrigger: {
       trigger: ".about-section",
-      start: "bottom 95%",
+      start: "top top",
       end: "bottom top",
       scrub: true,
       invalidateOnRefresh: true,
@@ -59,7 +59,7 @@ export function setCharTimeline(character, camera) {
   let neckBone =
     character?.getObjectByName("Neck") ||
     character?.getObjectByName("spine005");
-  if (window.innerWidth > 1024) {
+  if (window.innerWidth >= 1024) {
     if (character) {
       tl1
         .fromTo(character.rotation, { y: 0 }, { y: 0.7, duration: 1 }, 0)
@@ -68,8 +68,8 @@ export function setCharTimeline(character, camera) {
         .fromTo(".character-model", { left: "50%", opacity: 1 }, { left: "25%", opacity: 1, duration: 1 }, 0)
         .fromTo(".landing-container", { opacity: 1 }, { opacity: 0, duration: 0.4 }, 0)
         .fromTo(".landing-bg-title", { opacity: 1 }, { opacity: 0, duration: 0.4 }, 0)
-        .to(".landing-container", { y: "40%", duration: 0.8 }, 0)
-        .fromTo(".about-me", { y: "-50%" }, { y: "0%" }, 0);
+        .to(".landing-container", { y: "0%", duration: 0.8 }, 0)
+        .fromTo(".about-me", { opacity: 0 }, { opacity: 1, duration: 1 }, 0);
 
       tl2
         .to(
@@ -80,11 +80,11 @@ export function setCharTimeline(character, camera) {
         .fromTo(
           ".character-model",
           { pointerEvents: "inherit" },
-          { pointerEvents: "none", left: "37%", delay: 6.5, duration: 1.5 },
+          { pointerEvents: "none", left: "37%", delay: 0, duration: 2.0 },
           0,
         )
-        .fromTo(".character-model", { opacity: 1 }, { opacity: 0, delay: 6.5, duration: 1.5 }, 0)
-        .to(character.rotation, { y: 0.92, x: 0.12, delay: 3, duration: 3 }, 0);
+        .fromTo(".character-model", { opacity: 1 }, { opacity: 0, delay: 0, duration: 2.0 }, 0)
+        .to(character.rotation, { y: 0.92, x: 0.12, delay: 0, duration: 3 }, 0);
 
       if (neckBone) {
         tl2.to(neckBone.rotation, { x: 0.6, delay: 2, duration: 3 }, 0);
@@ -136,6 +136,17 @@ export function setCharTimeline(character, camera) {
         },
       });
       tM2.to(".what-box-in", { display: "flex", duration: 0.1, delay: 0 }, 0);
+
+      // Fade out the character model as we scroll past the landing section on mobile/tablet
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: ".landing-section",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      }).to(".character-model", { opacity: 0, ease: "none" });
     }
   }
 }
@@ -180,7 +191,7 @@ export function setAllTimeline() {
       0,
     );
 
-  if (window.innerWidth > 1024) {
+  if (window.innerWidth >= 1024) {
     careerTimeline.fromTo(
       ".career-section",
       { y: 0 },

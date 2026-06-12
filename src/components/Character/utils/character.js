@@ -371,14 +371,6 @@ const setCharacter = (renderer, scene, camera) => {
 
       setCharTimeline(character, camera);
       setAllTimeline();
-      (
-        character.getObjectByName("RightFoot") ||
-        character.getObjectByName("footR")
-      )?.position.setY(3.36);
-      (
-        character.getObjectByName("LeftFoot") ||
-        character.getObjectByName("footL")
-      )?.position.setY(3.36);
 
       return gltf;
     } catch (err) {
