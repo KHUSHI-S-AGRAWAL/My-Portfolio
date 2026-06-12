@@ -120,3 +120,19 @@
     line-height: 2.7rem;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .about-me {
+    padding: 24px !important;
+    max-width: calc(100% - 20px);
+  }
+  .about-me p {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .about-me h3 {
+    font-size: 18px;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+  }
+}
