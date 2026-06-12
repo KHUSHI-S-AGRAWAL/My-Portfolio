@@ -185,6 +185,10 @@
     font-size: 13vw;
     top: 8vh;
   }
+  .character-container,
+  .character-model {
+    display: none !important;
+  }
 }
 @media screen and (max-width: 600px) {
   .landing-bg-title {
